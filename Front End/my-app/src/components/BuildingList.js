@@ -1,52 +1,51 @@
 import React from 'react';
 
 const URL_Search = (props) => {
-    //console.log('This is my directory file', this.props.data);
     var url;
+    var url_list = [];
     if(!!props.filterText.toLowerCase())
     {
       var repo_num = 2;
       var c = 0;
       while(c < repo_num)
       {
-      fetch('https://api.github.com/search/code?q=' + props.filterText.toLowerCase() + '+user:' + props.data[c].user)
-      .then(response => response.json())
-      .then(data =>
-      {
-       var d = 0;
-       var url_number = data.items.length;
-       while(d < url_number)
-       {
-         if(data.items[d].html_url != null)
-         {
-         url = data.items[d].html_url;
-         console.log(url)
-         }
-         d++;
-       }
+          fetch('https://api.github.com/search/code?q=' + props.filterText.toLowerCase() + '+user:' + props.data[c].user)
+          .then(response => response.json())
+          .then(data =>
+          {
+           var d = 0;
+           var url_number = data.items.length;
+           while(d < url_number)
+           {
+             if(data.items[d].html_url != null)
+             {
+             url = data.items[d].html_url;
+             //console.log(url)S
+             if(!url)
+             {}
+             else {
+               url_list.push(url);
+             }
+             }
+             d++;
+           }
 
-     });
-     c++;
+         });
+         c++;
     }
+        console.log(url_list);
     }
+    var d = 0;
+    const returnUrl = url_list.map(directory => {
+      console.log(directory);
+        return (
+            <tr> {directory}
+                <td> </td>
+            </tr>
+        );
+    });
 
-/*
-const URL_List = (props) => {
-    //console.log('This is my directory file', this.props.data);
-    const urlList = props.data.filter().map(url => {
-    if(!!url.filterText.toLowerCase())
-    {
-      fetch('https://api.github.com/search/code?q=' + props.filterText.toLowerCase() + '+user:andderan')
-      .then(response => response.json())
-      .then(data =>
-      {
-       console.log(
-         data.items[0].html_url)
-     });
-    }
-
-  });
-  */
-return null;
+    console.log(returnUrl);
+    return returnUrl;
 };
 export default URL_Search;
