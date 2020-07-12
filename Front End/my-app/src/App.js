@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import Search from './components/Search';
-import ViewBuilding from './components/ViewBuilding';
-import URL_Search from './components/BuildingList';
-import Credit from './components/Credit';
+import ViewBuilding from './components/ReturnExample';
+import URL_Search from './components/URL_List';
 
 
 const App = (props) => {
