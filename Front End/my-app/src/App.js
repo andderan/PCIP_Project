@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Search from './components/Search';
 import ViewBuilding from './components/ReturnExample';
-import URL_Search from './components/URL_List';
+import UrlSearch from './components/URL_List';
 
 
 const App = (props) => {
@@ -39,10 +39,11 @@ const App = (props) => {
                                         <b>URL</b>
                                     </td>
                                 </tr>
-                                <URL_Search
+	    			<p> TEST </p>
+                                <UrlSearch
                                     data={props.data}
                                     filterText = {filterText}
-                                    clickedBoi = {selectedUpdate}                               />
+                                    clickedBoi = {selectedUpdate} />
                             </table>
                         </div>
                     </div>
