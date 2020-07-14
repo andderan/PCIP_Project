@@ -1,8 +1,27 @@
 import React from 'react';
 
-function resolveAfterFetch()
-{
+const AsyncFetch = async (url) => {
+	console.log("Inside Async");
+	var repo_num = 2;
+	var url_list = [];
+	for(var i = 0; i < repo_num; i++)
+	{
+		console.log("Right before Fetch");
+		const response  = await fetch('https://api.github.com/search/code?q=Qtable+user:andderan');
+		const results = await response.json();
+		console.log("Right after Fetch");
 
+		for(var j = 0; j < results.items.length; j++)
+		{
+			if(results.items[j].html_url != null)
+			{
+				console.log("Result loop")
+				url_list.push(results.items[j].html_url);
+			}
+		}
+	}
+
+	return url_list;
 }
 
 
@@ -10,6 +29,8 @@ const UrlSearch = (props) => {
     var url_list = []; //holds all valid urls from all users
     if(!!props.filterText.toLowerCase()) //If there is something on search bar
     {
+
+	/*
       var repo_num = 2; //number of entries in data.js in the data folder
       var repos;
       for(repos = 0; repos < repo_num; repos++)
@@ -36,31 +57,17 @@ const UrlSearch = (props) => {
 		 
          });
      }
-	
-        console.log("HERE ARR " + url_list); //logs url list to website console. Right click site and hit inspect
-	console.log("HERE SIZE " + url_list.length);
-	    
-	console.log(url_list);
-   	for(var i = 0; i < url_list.length; i++)
-	    {
-		    console.log(i);
-		    if(!url_list[i])
-		    {}
-		    else
-		    {
-			    console.log(url_list[i]);
+     */
 
-		    }
-	    }
-		return (
-		<div>
-		<div> {url_list} </div>
-		<ul>
-		{url_list.map(url => (
-			<li> {url} </li>
-		))}
-		</ul>
-		</div>
+ 
+	url_list = AsyncFetch("TEST"); // Right now the URL is hardcoded to search my repos for Qtable
+        console.log("Printing list " + url_list); //logs url list to website console. Right click site and hit inspect
+	console.log("List Size is " + url_list.length);
+	    
+
+   		return (
+		<div> The list length is {url_list.length} </div>
+		
 	);
 		
     }
