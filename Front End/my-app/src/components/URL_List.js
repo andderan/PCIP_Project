@@ -1,5 +1,40 @@
 import React from 'react';
 
+const UrlSearch = (props) => {
+
+		var url_list = [];
+		const {urls} = props;
+		console.log("In search " + urls);
+		if(!urls || urls.length === 0) return <p> No Results </p>;
+
+
+		for(var i = 0; i < urls.total_count; i++){
+			if(urls.items[i].html_url != null)
+			{
+				url_list.push(urls.items[i].html_url)
+			}
+		}
+
+		console.log(url_list);
+		return (
+			<ul>
+				<h2 className='list-head'>Links to matching code</h2>
+				{url_list.map((url) => {
+						return(
+							<li key={url.id} className='list'>
+								<span className='url'>{url} </span>
+							</li>
+						);
+
+				})};
+			</ul>
+		);
+};
+
+export default UrlSearch;
+
+/*
+
 const AsyncFetch = async (url) => {
 	console.log("Inside Async");
 	var repo_num = 2;
@@ -48,28 +83,28 @@ const UrlSearch = (props) => {
                  if(data.items[urls].html_url != null) //if there is an html url
                  {
 			//	url_list.push(<Item key = {urls}> item = { data.items[urls].html_url}/>);
-			
+
 			console.log("For Loop itr " + url_list.length);
-			url_list.push(data.items[urls].html_url);		   
-		   
+			url_list.push(data.items[urls].html_url);
+
                  }
                }
-		 
+
          });
      }
      */
+/*
 
- 
 	url_list = AsyncFetch("TEST"); // Right now the URL is hardcoded to search my repos for Qtable
         console.log("Printing list " + url_list); //logs url list to website console. Right click site and hit inspect
 	console.log("List Size is " + url_list.length);
-	    
+
 
    		return (
 		<div> The list length is {url_list.length} </div>
-		
+
 	);
-		
+
     }
 	else{
 		return <div> Nothing Yet </div>}
@@ -79,7 +114,4 @@ const UrlSearch = (props) => {
 
 };
 
-
-
-
-export default UrlSearch;
+*/
