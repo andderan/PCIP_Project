@@ -22,7 +22,7 @@ const UrlSearch = (props) => {
 				{url_list.map((url) => {
 						return(
 							<li key={url.id} className='list'>
-								<span className='url'>{url} </span>
+								<a href={url}> {url} </a>
 							</li>
 						);
 
