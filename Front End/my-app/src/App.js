@@ -4,86 +4,6 @@ import ViewBuilding from './components/ReturnExample';
 import UrlSearch from './components/URL_List';
 import UrlSearchWaiting from './components/UrlSearchWaiting';
 
-
-
-
-function App(props){
-
-  const [filterText, setFilterText] = useState('');
-  const [selectedBuilding, setSelectedBuilding] = useState(0);
-  const [newData, setData] = useState(props.data);
-
-  const filterUpdate = (value) => {
-      //Here you can set the filterText property of state to the value passed into this function
-      setFilterText(value);
-  };
-
-  const selectedUpdate = (id) => {
-      //Here you can update the selectedBuilding property of state to the id passed into this function
-      setSelectedBuilding(id);
-  };
-
-  const newishData = (data) => {
-    setData(data);
-  };
-
-  const UrlLoading = UrlSearchWaiting(UrlSearch);
-  const [appState, setAppState] = useState({
-    loading: false,
-    urls: null,
-  });
-
-  useEffect(() => {
-    setAppState({loading: true});
-    var Request; // This needs to be the full API request
-    fetch(Request)
-      .then((res) => res.json())
-      .then((urls) =>{
-        console.log(urls);
-        setAppState({loading: false, urls: urls});
-      });
-  }, [setAppState]);
-
-  return (
-      <div className="bg">
-          <div className="row">
-              <h1>96th RNCS Code Search</h1>
-          </div>
-
-          <Search filterUpdate = {filterUpdate}/>
-          <main>
-              <div className="row">
-                  <div className="column1">
-                      <div className="tableWrapper">
-                          <table className="table table-striped table-hover">
-                              <tr>
-                                  <td>
-                                  </td>
-                              </tr>
-                                <UrlLoading isLoading={appState.loading} urls={appState.urls} />
-                          </table>
-                      </div>
-                  </div>
-                  </div>
-          </main>
-      </div>
-  );
-
-/*
-  return (
-    <div className='App'>
-      <div className='container'>
-        <h1>My Repositories</h1>
-      </div>
-      <div className='repo-container'>
-        <UrlLoading isLoading={appState.loading} urls={appState.urls} />
-      </div>
-    </div>
-  ) ;
-*/
-}
-
-/*
 const App = (props) => {
     const [filterText, setFilterText] = useState('');
     const [selectedBuilding, setSelectedBuilding] = useState(0);
@@ -116,10 +36,9 @@ const App = (props) => {
                             <table className="table table-striped table-hover">
                                 <tr>
                                     <td>
-                                        <b>URL</b>
+                                        <b>URLs</b>
                                     </td>
                                 </tr>
-	    			<p> TEST </p>
                                 <UrlSearch
                                     data={props.data}
                                     filterText = {filterText}
@@ -133,5 +52,4 @@ const App = (props) => {
     );
 };
 
-*/
 export default App;

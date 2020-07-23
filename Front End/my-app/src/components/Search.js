@@ -5,7 +5,6 @@ const Search = (props) => {
 
     const filterUpdate = () => {
         props.filterUpdate(document.getElementsByTagName('input')[0].value);
-        console.log(document.getElementsByTagName('input')[0].value);
     };
 
     return (
