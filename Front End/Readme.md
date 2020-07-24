@@ -246,7 +246,7 @@ Most of your components will just display some kind of information based on the 
 
 ### Setup
 
-navigate to the my-app folder and run the command:
+Navigate to the my-app folder and run the command:
 
 `npm install`
 
@@ -265,8 +265,18 @@ navigate to the my-app folder and run the command:
 
 - App.js - Main Application
 
-- Url_List.js: Searches for repos using the data.js file and the search terms from search
+- Url_List.js: Searches for repos using the data.js file and the search terms from search.
 
 - Search.js: Search bar
 
 - index.css - Styles
+
+#### Current State of Project:
+
+Enter the search terms into the bar and hit submit.
+Right-click and inspect to see the command line for the website. An array of results should be outputted to the console.
+
+Recommended Starting Search Terms:
+  `Game`, `Table`, `Game Table`
+
+These will return different searches. The third search shows how the API can easily refine the search.
